@@ -1,0 +1,74 @@
+import calendar
+
+class AdvancedCalendar:
+    def __init__(self):
+        self.events = {}
+
+    def display_calendar(self, year, month):
+        print(calendar.month(year, month))
+
+    def add_event(self, year, month, day, event):
+        date = (year, month, day)
+        if date in self.events:
+            self.events[date].append(event)
+        else:
+            self.events[date] = [event]
+        print(f"Event '{event}' added to {year}-{month}-{day}")
+
+    def display_events(self, year, month, day):
+        date = (year, month, day)
+        if date in self.events:
+            print(f"Events for {year}-{month}-{day}:")
+            for event in self.events[date]:
+                print(event)
+        else:
+            print(f"No events for {year}-{month}-{day}")
+
+    def delete_event(self, year, month, day, event):
+        date = (year, month, day)
+        if date in self.events:
+            if event in self.events[date]:
+                self.events[date].remove(event)
+                print(f"Event '{event}' deleted from {year}-{month}-{day}")
+            else:
+                print(f"Event '{event}' not found for {year}-{month}-{day}")
+        else:
+            print(f"No events for {year}-{month}-{day}")
+
+def main():
+    cal = AdvancedCalendar()
+    while True:
+        print("\n1. Display calendar")
+        print("2. Add event")
+        print("3. Display events")
+        print("4. Delete event")
+        print("5. Quit")
+        choice = input("Choose an option: ")
+        if choice == "1":
+            year = int(input("Enter year: "))
+            month = int(input("Enter month: "))
+            cal.display_calendar(year, month)
+        elif choice == "2":
+            year = int(input("Enter year: "))
+            month = int(input("Enter month: "))
+            day = int(input("Enter day: "))
+            event = input("Enter event: ")
+            cal.add_event(year, month, day, event)
+        elif choice == "3":
+            year = int(input("Enter year: "))
+            month = int(input("Enter month: "))
+            day = int(input("Enter day: "))
+            cal.display_events(year, month, day)
+        elif choice == "4":
+            year = int(input("Enter year: "))
+            month = int(input("Enter month: "))
+            day = int(input("Enter day: "))
+            event = input("Enter event to delete: ")
+            cal.delete_event(year, month, day, event)
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice. Please choose again.")
+
+if __name__ == "__main__":
+    main()
