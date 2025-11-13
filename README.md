@@ -1,2 +1,2 @@
 # Fourpincoding
-All about Technology
+It is all about Technology
